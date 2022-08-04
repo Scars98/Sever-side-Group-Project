@@ -1,0 +1,50 @@
+<html>
+    <body>
+ 
+      
+        <H2>restaurant Details</H2><hr>
+        <p>restaurant name: <%= restaurants.name %></p>
+        <p>Borough: <%= restaurants.borough %></p>
+        <p>Cuisine: <%= restaurants.cuisine %></p>
+        <p>Street: <%= restaurants.address.street %></p>
+        <p>Buliding: <%= restaurants.address.building %></p>
+        <p>Zipcode: <%= restaurants.address.zipcode %></p>
+        <p>GPS: <%= restaurants.address.coord.lon%>, <%= restaurants.address.coord.lat %></p>
+        <H3>Rating</H3>
+        <H4>User(Score)</H4>
+        
+        <% for (var i=0; i< restaurants.grades.user.length; i++) { %>        
+        </li><%= restaurants.grades.user[i] %> </li> 
+         
+      <% } %>     
+
+      <% for (var i=0; i< restaurants.grades.score.length; i++) { %>    
+      </li>(<%= restaurants.grades.score[i] %> )</li> 
+       
+    <% } %>    
+
+       
+        <% if (restaurants.photo) { %>
+            <img src="data:image/jpg;base64, <%= restaurants.photo %>"><br>
+        <% } %>
+
+        <p>Owner: <%= restaurants.owner %></p>
+
+        <p>username: <%= username %></p>
+
+        <% if (username == restaurants.owner) { %>
+            <a href="/edit?_id=<%= restaurants._id %>">Edit</a><br>
+            <a href="/delete?_id=<%= restaurants._id %>">Delete</a><br>
+        <% } else { %>
+            <p>you are not the owner therefore cannot edit/delete</p>
+        <% } %>
+
+        <a href="/map?_id=<%= restaurants._id%>">Map</a><br>
+        
+        <a href="/rate?_id=<%= restaurants._id %>">Rate</a><br>
+
+        <a href="/home">home</a>
+
+
+    </body>
+</html>
